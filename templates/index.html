@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link type="text/css" rel="styleSheet" href="../static/css/index.css">
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/js/echarts.min.js"></script>
+    <script src="../static/js/echarts.all.js"></script>
+
+</head>
+<body>
+    <h1>
+        <img src="image/header.png">
+        <div id="title">电竞数据可视化</div>
+    </h1>
+    
+    <div id="center_background"></div>
+    <div id="center">
+
+            <div class="chart-loader">
+                <div class="loader">
+                </div>
+            </div>
+
+        <div id="jdg_logo">
+            <h1>冠军队伍</h1>
+            <img src="../static/image/jdg_logo.png" width="" height="70%">
+        </div>
+    </div>
+
+    <div id="left_01_background"></div>
+
+
+    <div id="left_01">
+
+            <div id="id1" style="width: 100%;height:100%"></div>
+            <script>
+                var dom1 = echarts.init(document.getElementById("id1"));
+                var option1 = {
+                    title:{
+                        text:'战队KDA排名',
+                        target:'blank',//主标题超链接打开方式
+                        // textStyle:{ //设置主标题风格
+                        Color:'green',//设置主标题字体颜色
+                        fontStyle:'',//主标题文字风格
+                        top:'top',//组件离上边的距离middle,top,bottom*/ //此二者的优先级高于x吗?答案：是
+                        x:'center',
+                        backgroundColor:'white',//标题背景色
+                        borderColor:'gray',//标题边框颜色
+                        borderWidth:5,//标签线框
+                        borderRadius:5,//边框切圆角
+                        shadowBlur:10,//图形阴影模糊大小,该属性配合 shadowColor,shadowOffsetX(阴影水平方向上的偏移距离), shadowOffsetY(阴影垂直方向上的偏移距离。) 一起设置图形的阴影效果。
+                        shadowColor:'rgba(0,0,0,0.5)'//阴影颜色
+                        },
+
+                    
+
+                    dataset: {
+                        source: [
+                            
+                    ["名次", "战队", "KDA"],
+                    
+
+                        ["1", "JDG", "5.2"],
+                        ["2", "FPX", "4.7"],
+                        ["3", "ES", "4.5"],
+                        ["4", "EDG", "4.2"],
+                        ["5", "TES", "3.9"],
+                        ["6", "RNG", "3.7"],
+                        ["7", "WE", "3.7"],
+                        ["8", "SN", "3.3"],
+                        ["9", "VG", "3.3"],
+                        ["10", "BLG", "3.3"],
+                        ["11", "IG", "3.1"],
+                        ["12", "DMO", "3.0"],
+                        ["13", "RW", "3.0"],
+                        ["14", "LGD", "2.9"],
+                        ["15", "OMG", "2.7"],
+                        ["16", "LNG", "2.6"],
+                        ["17", "V5", "1.4"]
+                        ]
+                    },
+
+                    xAxis: {name:"KDA",
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        color: '#c3dbff',  //更改坐标轴文字颜色
+                        fontSize : 16      //更改坐标轴文字大小
+                            }
+                        }
+                    },
+                    yAxis: {type: 'category',
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        color: '#c3dbff',  //更改坐标轴文字颜色
+                        fontSize : 16      //更改坐标轴文字大小
+                            }
+                        }},
+                    series: [
+                        {
+                            type: 'bar',
+                            
+                            itemStyle: {
+
+                                normal: {
+
+                                    color: function(params) {
+
+                                        // build a color map as your need.
+
+                                        var colorList = [
+
+                                        '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+
+                                        '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+
+                                        '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+
+                                        ];
+
+                                        return colorList[params.dataIndex]
+
+                                    },
+
+                                　　　　　　　　　　　　　　//以下为是否显示，显示位置和显示格式的设置了
+
+                                    label: {
+
+                                        show: true,
+
+                                        position: 'top',
+
+                                //                             formatter: '{c}'
+
+                                        formatter: '{b}\n{c}'
+
+                                    }
+
+                                }
+
+                                },
+
+                                　　　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+
+                                　　　　　　　　　　barWidth:10,
+
+                                
+                            encode: {
+                                // 将 "amount" 列映射到 X 轴。
+                                x: 'KDA',
+                                // 将 "product" 列映射到 Y 轴。
+                                y: '战队'
+                            }
+                        }
+                        
+
+                    ]
+                };
+                dom1.setOption(option1)
+            </script>
+    </div>
+
+
+
+    <div id="left_02">
+        <div id="id2" style="width: 100%;height: 100%"></div>
+            <script>
+                var dom2 = echarts.init(document.getElementById("id2"));
+                var option2 = {
+                    title:{
+                        text:'KDA与平均经济',
+                        target:'blank',//主标题超链接打开方式
+                        // textStyle:{ //设置主标题风格
+                        Color:'green',//设置主标题字体颜色
+                        fontStyle:'',//主标题文字风格
+                        top:'top',//组件离上边的距离middle,top,bottom*/ //此二者的优先级高于x吗?答案：是
+                        x:'center',
+                        backgroundColor:'white',//标题背景色
+                        borderColor:'gray',//标题边框颜色
+                        borderWidth:5,//标签线框
+                        borderRadius:5,//边框切圆角
+                        shadowBlur:10,//图形阴影模糊大小,该属性配合 shadowColor,shadowOffsetX(阴影水平方向上的偏移距离), shadowOffsetY(阴影垂直方向上的偏移距离。) 一起设置图形的阴影效果。
+                        shadowColor:'rgba(0,0,0,0.5)'//阴影颜色
+                        },
+
+                    xAxis: {name:"KDA",
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        color: '#c3dbff',  //更改坐标轴文字颜色
+                        fontSize : 16      //更改坐标轴文字大小
+                            }
+                        }},
+                    yAxis: {name:"平均经济",
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        color: '#c3dbff',  //更改坐标轴文字颜色
+                        fontSize : 16      //更改坐标轴文字大小
+                            }
+                        }},
+                    series: [{
+                        symbolSize: 20,
+                        data: [
+                        [5.2,60107],
+                        [4.7,57579],
+                        [4.5,62135],
+                        [4.2,58139],
+                        [3.9,58699],
+                        [3.7,58693],
+                        [3.7,54878],
+                        [3.3,57379],
+                        [3.3,56158],
+                        [3.3,58102],
+                        [3.1,54931],
+                        [3.0,56250],
+                        [3.0,55431],
+                        [2.9,57031],
+                        [2.7,54033],
+                        [2.6,54215],
+                        [1.4,47741]
+                        ],
+                        type: 'scatter'
+                    }]
+                }; 
+                
+                dom2.setOption(option2)
+            </script>
+    </div>
+    <div id="right_01">
+        <div id="id3" style="width: 100%; height:100%;"></div>
+            <script>
+                var dom3 = echarts.init(document.getElementById("id3"));
+                var option3 = {
+
+                    title:{
+                        text:'选手KDA',
+                        target:'blank',//主标题超链接打开方式
+                        // textStyle:{ //设置主标题风格
+                        Color:'green',//设置主标题字体颜色
+                        fontStyle:'',//主标题文字风格
+                        top:'top',//组件离上边的距离middle,top,bottom*/ //此二者的优先级高于x吗?答案：是
+                        x:'center',
+                        backgroundColor:'white',//标题背景色
+                        borderColor:'gray',//标题边框颜色
+                        borderWidth:5,//标签线框
+                        borderRadius:5,//边框切圆角
+                        shadowBlur:10,//图形阴影模糊大小,该属性配合 shadowColor,shadowOffsetX(阴影水平方向上的偏移距离), shadowOffsetY(阴影垂直方向上的偏移距离。) 一起设置图形的阴影效果。
+                        shadowColor:'rgba(0,0,0,0.5)'//阴影颜色
+                        },
+
+
+                    // singleAxis:{left = "90%"},
+                    legend: {},
+                    tooltip: {},
+                    dataset: {
+                        source: [
+                            ['选手', 'KDA'],
+                            ['Karsa',3.4]
+                            ,['Doinb',5.7]
+                            ,['Lwx',6.0]
+                            ,['Crisp',4.7]
+                            ,['Knight',5.5]
+                            ,['Tian',4.0]
+                            ,['369',3.5]
+                            ,['Meiko',3.3]
+                            ,['Scout',4.6]
+                            ,['Hope',6.8]
+                            ,['Missing',3.7]
+                            ,['beishang',4.6]
+                            ,['Jiumeng',4.2]
+                            ,['Morgan',2.6]
+                            ,['Rookie',3.2]
+                            ,['Puff',4.1]
+                            ,['Southwind',4.4]
+                            ,['TheShy',2.0]
+                            ,['LokeN',6.9]
+                            ,['LvMao',4.8]
+                        ]
+                    },
+                    xAxis: {type: 'category',
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        color: '#c3dbff',  //更改坐标轴文字颜色
+                        fontSize : 16      //更改坐标轴文字大小
+                            }
+                        }},
+                    yAxis: {
+                        axisLabel: {
+                        show: true,
+                        textStyle: {
+                        color: '#c3dbff',  //更改坐标轴文字颜色
+                        fontSize : 16      //更改坐标轴文字大小
+                            }
+                        }
+                    },
+                    // Declare several bar series, each will be mapped
+                    // to a column of dataset.source by default.
+                    series: [
+                        {type: 'bar'}
+                    ]
+                };
+
+            dom3.setOption(option3)
+            </script>
+
+    </div>
+    <div id="right_02">
+        <div id="id4" style="width: 100%;height:100%"></div>
+        <script>
+            var dom4 = echarts.init(document.getElementById("id4"));
+            var option4 = {
+
+                title:{
+                        text:'各位置KDA排行',
+                        target:'blank',//主标题超链接打开方式
+                        // textStyle:{ //设置主标题风格
+                        Color:'green',//设置主标题字体颜色
+                        fontStyle:'',//主标题文字风格
+                        top:'top',//组件离上边的距离middle,top,bottom*/ //此二者的优先级高于x吗?答案：是
+                        x:'center',
+                        backgroundColor:'white',//标题背景色
+                        borderColor:'gray',//标题边框颜色
+                        borderWidth:5,//标签线框
+                        borderRadius:5,//边框切圆角
+                        shadowBlur:10,//图形阴影模糊大小,该属性配合 shadowColor,shadowOffsetX(阴影水平方向上的偏移距离), shadowOffsetY(阴影垂直方向上的偏移距离。) 一起设置图形的阴影效果。
+                        shadowColor:'rgba(0,0,0,0.5)'//阴影颜色
+                        },
+
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        // data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '百度', '谷歌', '必应', '其他']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: 
+    
+    [
+        {
+            type: 'category',
+            data: ['上单', '打野', '中单', 'ADC', '辅助'],
+            axisLabel: {
+                        show: true,
+                        textStyle: {
+                        color: '#c3dbff',  //更改坐标轴文字颜色
+                        fontSize : 16      //更改坐标轴文字大小
+                            }
+                        }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                        show: true,
+                        textStyle: {
+                        color: '#c3dbff',  //更改坐标轴文字颜色
+                        fontSize : 16      //更改坐标轴文字大小
+                            }
+                        }
+        }
+    ],
+    series: [
+        {
+            // name: '直接访问',
+            type: 'bar',
+            data: [5.4,7.5,6.1,6.9,4.8]
+        },
+        {
+            // name: '邮件营销',
+            type: 'bar',
+            // stack: '广告',
+            data: [3.7, 4.6, 5.7, 6.0, 4.4]
+        },
+        {
+            // name: '联盟广告',
+            type: 'bar',
+            // stack: '广告',
+            data: [3.7, 4.6, 5.6, 5.6,4.0]
+        },
+        {
+            // name: '视频广告',
+            type: 'bar',
+            // stack: '广告',
+            data: [4.1, 6.0, 6.0, 6.8, 4.7]
+        }
+        
+    ]
+};
+
+        dom4.setOption(option4)
+        </script>
+
+
+    </div>
+
+    <div id="music">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=506196018&auto=1&height=32"></iframe>
+    </div>
+
+    <div id="time">
+        <h1>TIME</h1>
+    </div>
+
+
+
+
+
+
+
+
+
+<script>
+    function gettime(){
+        $.ajax({
+            url:"/time",
+            success:function(data){
+                $("#time").html(data)
+            },
+            error:function(xhr,type,errorThrown){
+            }
+        })
+    }
+    setInterval(gettime,1000)
+</script>
+
+
+</body>
+</html>
